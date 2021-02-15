@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My Awesome Quote App</title>
+        <style> 
+        	body{font-family:sans-serif;background-color:#333232;}
+        	.container{
+        		margin:30vh 0;
+        		text-align:center;
+        		display:flex;
+        		flex-direction:column;
+        	}
+        	.container div{margin:10px 0;}
+        	#quote{font-size:3rem;color:#cc9709;}
+        	#author{font-size:2rem;color:white;}
+        	.btn { 
+		          font-size: 1rem;    
+		          font-weight: 700;
+		          letter-spacing:1px;
+		          line-height: 1;   
+		          outline:none; 
+		          padding: 0.8em 0.8em 0.78em;
+		          text-transform: uppercase;
+		          cursor:pointer;
+		          box-shadow: 0 9px gray;   
+		      }
+		      .btn:active{
+		        position: relative;
+		        top: 7px;
+		        box-shadow: none;
+		      }
+        </style>
+    </head> 
+    <body>
+        <div class="container">
+            <div id="quote">HardWork is the true key to unlock the doors of success.</div>
+            <div id="author">- Mera hi thought h</div>
+            <div><button class="btn" onclick='random()'>Click to Generate a Random Quote!</button></div>
+        </div>
+        <script>
+        	function random(){
+        		const url = "https://api.quotable.io/random";
+				function generateQuote(){
+				   fetch(url)
+			 	.then(function(data) {
+			        return data.json();
+			    })
+				.then(function(data){    
+				    document.getElementById("quote").innerHTML = data.content; 
+				    document.querySelector("#author").innerHTML = "- " + data.author;
+				})
+				.catch(function(err) {
+				    console.log(err); 
+				    });
+				 } 
+				generateQuote();
+        	}
+        </script>
+    </body>
+</html>
