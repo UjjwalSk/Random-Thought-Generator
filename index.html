@@ -52,7 +52,7 @@
 			      dataType: "json",
 			      success: function( response ) {
 			          $("#quote").text(response.quoteText);
-			          $("#author").text("- "+response.quoteAuthor);
+				  (response.quoteAuthor).trim()==""?"Anonymous":($("#author").text("- "+response.quoteAuthor));
 			      }
 			  });
 			}
