@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> My Awesome Quote App</title>
-        <style> 
+    	<link rel="icon" href="./favicon.ico">
+        <title>Random...</title>
+        <style>  
         	html{background:linear-gradient(to top left ,orange, pink , khaki);background-repeat:no-repeat;height:100%;}
         	body{font-family:sans-serif;}
         	.container{
@@ -36,28 +37,25 @@
     </head> 
     <body>
         <div class="container">
-            <div id="quote">HardWork is the true key to unlock the doors of success.</div>
-            <div id="author">- Mera hi thought h</div>
-            <div><button class="btn" onclick='random()'>Click to Generate a Random Quote!</button></div>
+            <div id="quote">Code , Sleep , Repeat</div>
+            <div id="author">- Anonymous</div>
+            <div>
+            	<button class="btn" onclick='randomQuote()'>Click to Generate a Random Quote!
+            	</button>
+            </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
         <script>
-        	function random(){
-        		const url = "https://api.quotable.io/random";
-				function generateQuote(){
-				   fetch(url)
-			 	.then(function(data) {
-			        return data.json();
-			    })
-				.then(function(data){    
-				    document.getElementById("quote").innerHTML = data.content; 
-				    document.querySelector("#author").innerHTML = "- " + data.author;
-				})
-				.catch(function(err) {
-				    console.log(err); 
-				    });
-				 } 
-				generateQuote();
-        	}
+        	function randomQuote() {
+			  $.ajax({
+			      url: "https://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?",
+			      dataType: "json",
+			      success: function( response ) {
+			          $("#quote").text(response.quoteText);
+			          $("#author").text("- "+response.quoteAuthor);
+			      }
+			  });
+			}
         </script>
     </body>
 </html>
